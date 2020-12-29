@@ -1,0 +1,66 @@
+﻿@page "/menu"
+@page "/menu/{Name}"
+@using CanteenManagementSystem.Shared
+@inject HttpClient Http 
+
+<h4>Menu</h4>
+<RadzenImage Path="image/2.jpg" Style="width:940px; height: 190px" />
+<br />
+<p class="mt-2">Menu From @Name</p>
+
+<RadzenCard Style="width:940px; height:330px;">
+    @if (Name != null)
+    {
+        <div class="container">
+            <div class="row mb-1">
+                @foreach (var menu in ShopList)
+                {
+                    <div class="col">
+                        <RadzenCard Style="width:400px; height:70px;">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <span class="col-3">
+                                        @menu.Name
+                                    </span>
+                                    <span class="col-4">
+                                        <RadzenImage Path="image/burger.jpg" Style="width:100px; height: 50px" />
+                                    </span>
+                                    <span class="col-3">
+                                        - 1 +
+                                    </span>
+                                    <span class="col-2">
+                                        <RadzenIcon Icon="add_shopping_cart" />
+                                    </span>
+                                </div>
+                            </div>
+                        </RadzenCard>
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+</RadzenCard>
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+
+    private ShopMenu[] shops;
+    private List<ShopMenu> ShopList { get; set; } = new List<ShopMenu>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        shops = await Http.GetFromJsonAsync<ShopMenu[]>("ShopMenu");
+
+        ShopList.Add(new ShopMenu(1, "Burger", "AMKphoto"));
+        ShopList.Add(new ShopMenu(2, "Rice", "STphoto"));
+        ShopList.Add(new ShopMenu(3, "Noodle", "FAphoto"));
+        ShopList.Add(new ShopMenu(4, "Pizza", "SMLphoto"));
+        ShopList.Add(new ShopMenu(5, "Sushi", "HSWphoto"));
+        ShopList.Add(new ShopMenu(6, "Cake", "SLYphoto"));
+        ShopList.Add(new ShopMenu(7, "Sunkist", "KKphoto"));
+        ShopList.Add(new ShopMenu(8, "Cola", "YYTphoto"));
+
+    }
+}

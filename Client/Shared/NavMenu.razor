@@ -1,0 +1,75 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">
+        <RadzenIcon Icon="face"/>
+        YCC Canteen
+    </a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="storefront" /></span> Shop
+            </NavLink>
+        </li>
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="menu">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="restaurant" /></span> Menu
+            </NavLink>
+        </li>
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="cart">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="shopping_cart" /></span> Cart
+            </NavLink>
+        </li>
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="order">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="check_box" /></span> Order
+            </NavLink>
+        </li>
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="history">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="history" /></span> History
+            </NavLink>
+        </li>
+        <li class="nav-item mb-3">
+            <NavLink class="nav-link" href="emoney">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="local_atm" /></span> E-Money
+            </NavLink>
+        </li>
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="profile">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="account_circle" /></span> Profile
+            </NavLink>
+        </li>
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="changepassword">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="vpn_key" /></span> Change Password
+            </NavLink>
+        </li>
+        @*<li class="nav-item ">
+            <NavLink class="nav-link" href="#">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="follow_the_signs" /></span> Log Out
+            </NavLink>
+        </li>*@
+        <li class="nav-item ">
+            <NavLink class="nav-link" href="login">
+                <span class="oi" aria-hidden="true"><RadzenIcon Icon="login" /></span> Log In
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

@@ -1,0 +1,14 @@
+﻿@page "/login"
+
+<h3>Login</h3>
+
+<RadzenCard Style="width: 700px; height:400px; margin-left:100px; margin-top:80px">
+    <RadzenLogin AllowRegister="true" AllowResetPassword="true"
+                 Username=@userName Password=@password
+                 Style="margin-bottom: 20px; width: 500px; height:300px; margin-top:20px; margin-left:40px" />
+</RadzenCard>
+
+@code {
+    string userName = "Enter Your Name";
+    string password = "user";
+}

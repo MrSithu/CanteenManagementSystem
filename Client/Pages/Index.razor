@@ -1,0 +1,44 @@
+﻿@page "/"
+@using CanteenManagementSystem.Shared
+@inject HttpClient Http
+
+<h4 class="mb-4 ml-3">Shop</h4>
+
+<div class="container">
+    <div class="row mb-2">
+        @foreach (var shop in ShopList)
+        {
+            <a href="/menu/@shop.Name" class="text-decoration-none text-info">
+                <div class="col">
+                    <RadzenCard Style="width:190px; height:140px">
+                        <RadzenImage Path="image/2.jpg" Style="width:140px; height:100px" />
+                    </RadzenCard>
+                    <p class="text-center">@shop.Name</p>
+                </div>
+            </a>         
+        }
+    </div>
+</div>
+
+@code {
+    private Shop[] shops;
+    private List<Shop> ShopList { get; set; } = new List<Shop>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        shops = await Http.GetFromJsonAsync<Shop[]>("Shop");
+
+        ShopList.Add(new Shop(1, "Aung Myin Kyaw", "AMKphoto"));
+        ShopList.Add(new Shop(2, "Sun Top", "STphoto"));
+        ShopList.Add(new Shop(3, "For All", "FAphoto"));
+        ShopList.Add(new Shop(4, "Shan Ma Lay", "SMLphoto"));
+        ShopList.Add(new Shop(5, "Hnin Si Wai", "HSWphoto"));
+        ShopList.Add(new Shop(6, "Shwe Latt Yar", "SLYphoto"));
+        ShopList.Add(new Shop(7, "Koot Khine", "KKphoto"));
+        ShopList.Add(new Shop(8, "Yo Yar Thu", "YYTphoto"));
+        ShopList.Add(new Shop(9, "May Myo", "MMphoto"));
+        ShopList.Add(new Shop(10, "Myat", " Mphoto"));
+        ShopList.Add(new Shop(11, "Linn Eain Thit", "LETphoto"));
+        ShopList.Add(new Shop(12, "Palace", "Pphoto"));
+    }
+}
